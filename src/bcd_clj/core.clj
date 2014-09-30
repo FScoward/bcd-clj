@@ -25,10 +25,15 @@
       (let [tmp (rem num 10)]
         ; todo
         (if (and (= i (- digit 1)) isOdd)
-          (aset bcd (/ i 2) tmp))
+          (aset-byte bcd (/ i 2) tmp)
+          (if (= 0 (/ i 2))
+            (aset-byte bcd (/ i 2) tmp)
+            (aset-byte bcd (/ i 2) (bit-shift-left tmp 4))
+            ))
         (recur (inc i)))))
-
+  (vec bcd)
   )
 
 
-(dec-to-bcd-array 10000)
+
+(dec-to-bcd-array 123)
