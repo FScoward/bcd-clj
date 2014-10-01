@@ -3,9 +3,9 @@
 ; 桁数計算
 (def counter (ref 0))
 (defn calc-digits [num]
-(dosync (alter counter inc))
-(def result (quot num 10))
-(if (>= result 1) (calc-digits result) counter)
+  (dosync (alter counter inc))
+  (def result (quot num 10))
+  (if (>= result 1) (calc-digits result) counter)
   (deref counter))
 
 (defn toBCD [num]
@@ -15,4 +15,4 @@
       (Integer/toBinaryString (int (.charAt (.toString num) x)))))
   (map (fn [x] (subs x 2)) str-array))
 
-(toBCD 123)
+(toBCD 1234567890)
